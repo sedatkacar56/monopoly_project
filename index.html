@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Sedat City – Indiana University Edition</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/animations.css">
+</head>
+
+
+
+
+<body>
+
+<div id="game-container">
+
+    <!-- GAME BOARD CANVAS -->
+<canvas id="gameCanvas" width="1100" height="1100"></canvas>
+
+    <!-- SIDEBAR UI -->
+    <div id="sidebar">
+        <h2>Sedat City</h2>
+        <h3>Indiana University Edition</h3>
+
+        <div id="player-panel"></div>
+
+        <button id="rollDiceBtn">Roll Dice</button>
+        <button id="endTurnBtn">End Turn</button>
+<div id="dice-container">
+    <div id="dice1" class="dice-box">1</div>
+    <div id="dice2" class="dice-box">1</div>
+</div>
+
+
+        <div id="log"></div>
+    </div>
+
+</div>
+
+<!-- ENGINE FILES -->
+<script src="js/engine/board.js"></script>
+<script src="js/engine/player.js"></script>
+<script src="js/engine/dice.js"></script> <!-- empty for now, but will fill soon -->
+<script src="js/engine/game.js"></script>
+
+<!-- UI FILES -->
+<script src="js/ui/events.js"></script>
+<script src="js/renderer.js"></script>
+
+
+
+
+</body>
+</html>

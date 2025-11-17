@@ -1,0 +1,151 @@
+/* ======================================================
+   SEDAT CITY – MAIN UI STYLES
+   Crimson + Cream Indiana University Theme
+   ====================================================== */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #f7f3ed; /* cream */
+    overflow: hidden;
+}
+
+#game-container {
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+    width: 100vw;
+}
+
+/* ========================
+   GAME BOARD CANVAS
+   ======================== */
+#gameCanvas {
+    display: block;
+    max-width: 1100px;
+    max-height: 1100px;
+    width: auto;
+    height: 100vh;
+    object-fit: contain;
+    position: relative;
+    z-index: 1;  /* Keep canvas lower than tokens */
+}
+
+/* ========================
+   SIDEBAR
+   ======================== */
+#sidebar {
+    width: 350px;
+    background-color: #f7f3ed; /* IU cream */
+    padding: 20px;
+    border-left: 4px solid #990000;  /* IU crimson */
+    height: 100vh;
+    overflow-y: auto;
+    flex-shrink: 0;
+}
+
+#sidebar h2 {
+    color: #990000; /* IU crimson */
+    font-size: 28px;
+    margin-bottom: 5px;
+}
+
+#sidebar h3 {
+    color: #444;
+    font-size: 18px;
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+/* ========================
+   PLAYER PANEL
+   ======================== */
+.player-box {
+    background-color: #ffffff;
+    border-left: 6px solid #990000;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+    font-size: 16px;
+    box-shadow: 0px 1px 4px rgba(0,0,0,0.2);
+}
+
+/* ========================
+   BUTTONS
+   ======================== */
+button {
+    display: block;
+    width: 100%;
+    padding: 15px;
+    margin-bottom: 15px;
+    font-size: 18px;
+    font-weight: bold;
+    background-color: #990000; /* crimson */
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+button:hover {
+    background-color: #b30000; /* lighter crimson */
+}
+
+button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+}
+
+/* ========================
+   LOG BOX
+   ======================== */
+#log {
+    background-color: #fff;
+    height: 300px;
+    border: 2px solid #990000;
+    padding: 10px;
+    overflow-y: auto;
+    font-size: 15px;
+    border-radius: 5px;
+}
+
+/* ========================
+   DICE UI (IU Crimson Style)
+   ======================== */
+#dice-container {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+    justify-content: center;
+}
+
+.dice-box {
+    width: 60px;
+    height: 60px;
+    background-color: #990000;
+    color: #fff;
+    font-size: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    font-weight: bold;
+    box-shadow: 0px 0px 5px rgba(0,0,0,0.4);
+}
+
+.token-animated {
+    transform: scale(1.25);
+    transition: transform 0.15s ease-out;
+}
+
+[id^="token-"] {
+    position: absolute !important;
+    width: 40px !important;
+    height: 40px !important;
+    z-index: 9999 !important;
+    pointer-events: none !important;
+    background-size: contain !important;
+    background-repeat: no-repeat !important;
+    transition: all 0.3s ease !important;
+}
