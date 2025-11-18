@@ -19,25 +19,35 @@
     <!-- GAME BOARD CANVAS -->
 <canvas id="gameCanvas" width="1100" height="1100"></canvas>
 
-    <!-- SIDEBAR UI -->
-    <div id="sidebar">
-        <h2>Sedat City</h2>
-        <h3>Indiana University Edition</h3>
-
-        <div id="player-panel"></div>
-
-        <button id="rollDiceBtn">Roll Dice</button>
-        <button id="endTurnBtn">End Turn</button>
-<div id="dice-container">
-    <div id="dice1" class="dice-box">1</div>
-    <div id="dice2" class="dice-box">1</div>
-</div>
-
-
+<div id="sidebar">
+    <h2>Sedat City</h2>
+    <h3>Indiana University Edition</h3>
+    
+    <!-- Players Section with Expandable Panels -->
+    <div id="players-container"></div>
+    
+    <!-- Dice -->
+    <div id="dice-container">
+        <div id="dice1" class="dice-box">1</div>
+        <div id="dice2" class="dice-box">1</div>
+    </div>
+    
+    <!-- Buttons -->
+    <button id="rollDiceBtn">Roll Dice</button>
+    <button id="endTurnBtn">End Turn</button>
+    
+    <!-- Bank Section -->
+    <div id="bank-section">
+        <h3>BANK</h3>
+    </div>
+    
+    <!-- History/Log Section -->
+    <div id="history-section">
+        <h3>History</h3>
         <div id="log"></div>
     </div>
-
 </div>
+
 
 <!-- ENGINE FILES -->
 <script src="js/engine/board.js"></script>

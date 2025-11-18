@@ -1,0 +1,73 @@
+/* ================================================
+   SEDAT CITY – ANIMATIONS
+   ================================================ */
+
+/* Dice Container */
+#dice-container {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+    justify-content: center;
+}
+
+/* Dice Box Styling - SINGLE DEFINITION */
+.dice-box {
+    width: 60px;
+    height: 60px;
+    background-color: #990000;
+    color: #fff;
+    font-size: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    font-weight: bold;
+    box-shadow: 0px 0px 5px rgba(0,0,0,0.4);
+}
+
+/* Dice Rolling Animation - SINGLE DEFINITION */
+.dice-rolling {
+    animation: diceShake 0.1s ease infinite;
+    background: #ff6b6b;
+}
+
+@keyframes diceShake {
+    0%, 100% { 
+        transform: scale(1.15) rotate(-5deg); 
+    }
+    50% { 
+        transform: scale(1.15) rotate(5deg); 
+    }
+}
+
+/* Token Animation - SINGLE DEFINITION */
+.token-animated {
+    transform: scale(1.3) translateY(-10px) !important;
+    transition: transform 0.2s ease !important;
+    filter: drop-shadow(0 0 10px rgba(153, 0, 0, 0.8));
+}
+
+/* Tile highlight pulse */
+@keyframes tileHighlight {
+    0%, 100% {
+        opacity: 0.4;
+    }
+    50% {
+        opacity: 0.7;
+    }
+}
+
+/* Player panel highlight for current player */
+.player-box.active {
+    animation: playerGlow 1s ease-in-out infinite;
+    border: 3px solid gold;
+}
+
+@keyframes playerGlow {
+    0%, 100% {
+        box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+    }
+    50% {
+        box-shadow: 0 0 20px rgba(255, 215, 0, 1);
+    }
+}

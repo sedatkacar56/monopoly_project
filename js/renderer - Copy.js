@@ -95,8 +95,6 @@ const Renderer = {
             }
         }
         
-  // Update property cards display  ← ADD THIS LINE
-    this.updatePropertyCards();
         requestAnimationFrame(() => this.draw());
     },
 
@@ -406,84 +404,9 @@ drawUtilityTile(ctx, tile, size) {
         this.ctx.fillStyle = "rgba(255, 215, 0, 0.5)";
         this.ctx.fill();
         this.ctx.restore();
-    },
-
-
-
-// UPDATE PROPERTY CARDS DISPLAY
-updatePropertyCards() {
-    const grid = document.getElementById("property-cards-grid");
-    if (!grid) return;
-    
-    grid.innerHTML = ""; // Clear existing cards
-    
-    // Color map for property cards
-    const colorMap = {
-        "brown": "#8B4513",
-        "lightblue": "#87CEEB",
-        "pink": "#FF69B4",
-        "orange": "#FFA500",
-        "red": "#FF0000",
-        "yellow": "#FFD700",
-        "green": "#00AA00",
-        "blue": "#0000FF"
-    };
-    
-    // Loop through all properties and create cards
-    for (let tile of BOARD.tiles) {
-        if (tile.type === "property" || tile.type === "railroad" || tile.type === "utility") {
-            const card = document.createElement("div");
-            card.className = "property-card";
-            
-            // Check if property is owned
-            let owner = null;
-            for (let p of Game.players) {
-                if (p.properties.includes(tile.index)) {
-                    owner = p;
-                    card.classList.add("owned");
-                    break;
-                }
-            }
-            
-            // Add color bar
-            if (tile.color) {
-                const colorBar = document.createElement("div");
-                colorBar.className = "property-card-color";
-                colorBar.style.backgroundColor = colorMap[tile.color];
-                card.appendChild(colorBar);
-            }
-            
-            // Add property name
-            const name = document.createElement("div");
-            name.style.fontWeight = "bold";
-            name.style.fontSize = "9px";
-            name.style.marginBottom = "3px";
-            name.textContent = tile.name;
-            card.appendChild(name);
-            
-            // Add price
-            if (tile.price) {
-                const price = document.createElement("div");
-                price.style.fontSize = "10px";
-                price.style.color = "#666";
-                price.textContent = `$${tile.price}`;
-                card.appendChild(price);
-            }
-            
-            // Add owner name if owned
-            if (owner) {
-                const ownerLabel = document.createElement("div");
-                ownerLabel.style.fontSize = "8px";
-                ownerLabel.style.color = "#FFD700";
-                ownerLabel.style.fontWeight = "bold";
-                ownerLabel.style.marginTop = "3px";
-                ownerLabel.textContent = owner.name;
-                card.appendChild(ownerLabel);
-            }
-            
-            grid.appendChild(card);
-        }
     }
-},
+
+
+
 
 };

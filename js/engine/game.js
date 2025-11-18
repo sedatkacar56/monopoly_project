@@ -286,21 +286,87 @@ rollDice() {
     // UPDATE UI PANEL
     // ---------------------------------------------
     updateUI() {
-        const panel = document.getElementById("player-panel");
-
-        panel.innerHTML = "";
-
-        for (let p of this.players) {
-            panel.innerHTML += `
-                <div class="player-box">
-                    <b>${p.name}</b><br>
-                    Money: $${p.money}<br>
-                    Properties: ${p.properties.length}
-                    ${p.inJail ? "<br>🚫 In Jail" : ""}
+    const container = document.getElementById("players-container");
+    if (!container) return;
+    
+    container.innerHTML = "";
+    
+    const tokenIcons = ["dog", "car", "hat", "ship"];
+    
+    for (let p of this.players) {
+        const isActive = p.id === this.currentPlayerIndex;
+        
+        const panel = document.createElement("div");
+        panel.className = `player-panel ${isActive ? 'active' : ''}`;
+        panel.id = `player-panel-${p.id}`;
+        
+        // Header (clickable)
+        const header = document.createElement("div");
+        header.className = "player-header";
+        header.onclick = () => this.togglePlayerPanel(p.id);
+        
+        header.innerHTML = `
+            <div class="player-info">
+                <div class="player-icon" style="background-image: url('assets/tokens/${tokenIcons[p.id]}.png')"></div>
+                <div class="player-details">
+                    <div class="player-name">${p.name}</div>
+                    <div class="player-money">$${p.money}</div>
                 </div>
-            `;
+            </div>
+            <div class="expand-arrow">▼</div>
+        `;
+        
+        // Properties section (collapsible)
+        const propsSection = document.createElement("div");
+        propsSection.className = "player-properties";
+        
+        if (p.properties.length > 0) {
+            const grid = document.createElement("div");
+            grid.className = "properties-grid";
+            
+            for (let tileIndex of p.properties) {
+                const tile = BOARD.tiles[tileIndex];
+                grid.innerHTML += this.createMiniPropertyCard(tile);
+            }
+            
+            propsSection.appendChild(grid);
+        } else {
+            propsSection.innerHTML = `<p style="color: #aaa; text-align: center;">No properties yet</p>`;
         }
+        
+        panel.appendChild(header);
+        panel.appendChild(propsSection);
+        container.appendChild(panel);
     }
+},
+
+togglePlayerPanel(playerId) {
+    const panel = document.getElementById(`player-panel-${playerId}`);
+    panel.classList.toggle("expanded");
+},
+
+createMiniPropertyCard(tile) {
+    const colorMap = {
+        "brown": "#8B4513",
+        "lightblue": "#87CEEB",
+        "pink": "#FF69B4",
+        "orange": "#FFA500",
+        "red": "#FF0000",
+        "yellow": "#FFD700",
+        "green": "#00AA00",
+        "blue": "#0000FF"
+    };
+    
+    const color = tile.color ? colorMap[tile.color] : "#666";
+    
+    return `
+        <div class="mini-property-card">
+            <div class="mini-property-color" style="background-color: ${color}"></div>
+            <div class="mini-property-name">${tile.name}</div>
+            <div class="mini-property-price">$${tile.price}</div>
+        </div>
+    `;
+},
 
 };
 
